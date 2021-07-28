@@ -1,16 +1,16 @@
 const dotenv = require("dotenv");
-
+//Express APP
 const express = require('express');
 const app= express();
 
-// var parser = require('body-parser');
-// app.use(parser.urlencoded({extended: false}));
-// app.use(parser.json());
+//Environment variables handling
 dotenv.config();
+
+//Routing
 require('./application/routers/routerManager')(app);
 
 
-
+//Serve Node App to IP:PORT
 const port = process.env.PORT || 3000;
 const ip = process.env.IP || "127.0.0.1";
 app.listen(port, ip, () => {
