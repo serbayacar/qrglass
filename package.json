@@ -1,14 +1,14 @@
 {
-    "name": "restapiexample_mvc",
+    "name": "qrglass",
     "version": "1.0.0",
-    "description": "Sample RestAPI with MVC Design Pattern",
+    "description": "NodeJS + QRCode + MSSQL web app",
     "main": "server.js",
     "scripts": {
         "start": "nodemon ./src/server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Serbay ACAR ( serbayacar@gmail.com)",
-    "license": "ISC",
+    "author": "Serbay ACAR (serbayacar@gmail.com)",
+    "license": "MIT",
     "dependencies": {
         "body-parser": "^1.19.0",
         "dotenv": "^10.0.0",
