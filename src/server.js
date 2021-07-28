@@ -6,6 +6,10 @@ const app= express();
 //Environment variables handling
 dotenv.config();
 
+//View engine set as HTML
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
 //Routing
 require('./application/routers/routerManager')(app);
 
