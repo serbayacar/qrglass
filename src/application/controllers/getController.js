@@ -21,6 +21,6 @@ module.exports.getAsJson =  function(req, res) {
     const variables = url_parts.query;
 
     // Generating JSON Data
-    const data = "{ name : 'product-" +  variables.urunID +"', production-date : '2021-07-13', exprire-date : '2022-01-01' }"
-    res.json(data);
+    const data = JSON.stringify({ name : 'product-' +  variables.urunID , productionDate : '2021-07-13', exprireDate : '2022-01-01'   }, null, 3);
+    res.end(data);
 }
