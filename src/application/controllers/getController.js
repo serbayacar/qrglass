@@ -27,27 +27,27 @@ module.exports.getAsJson =  function(req, res) {
 
 module.exports.getFromMSSQL =  function(req, res) {  
     // This endpoint serves data as JSON
-    var dbConfig = {
-        server: "192.168.1.253",
-        database:"TestDB",
-        user:"sa",
-        password:"serbay123@@"
-    };
+    // var dbConfig = {
+    //     server: "10.20.1.11",
+    //     database:"MES_P20Y06",
+    //     user:"sa",
+    //     password:"1"
+    // };
 
     var Connection = require('tedious').Connection;  
     var config = {  
-        server: '192.168.1.253',  //update me
+        server: '10.20.1.11',  //update me
         authentication: {
             type: 'default',
             options: {
                 userName: 'sa', //update me
-                password: 'serbay123@@'  //update me
+                password: '1'  //update me
             }
         },
         options: {
             // If you are on Microsoft Azure, you need encryption:
             encrypt: true,
-            database: 'TestDB'  //update me
+            database: 'MES_P20Y06'  //update me
         }
     };  
     var connection = new Connection(config);  
