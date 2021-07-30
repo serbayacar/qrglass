@@ -16,9 +16,7 @@ require('./src/application/routers/routerManager')(app);
 
 //Serve Node App to IP:PORT
 const port = process.env.PORT || 3000;
-const ip = process.env.IP || "127.0.0.1";
-app.listen(port, ip, () => {
-    console.log("APP running on " + ip + ":" + port);
+// const ip = process.env.IP || "127.0.0.1";
+app.listen(port, () => {
+    console.log("APP running on " + port);
   });
-  
-// app.listen(3000, "127.0.0.1");
