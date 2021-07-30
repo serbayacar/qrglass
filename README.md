@@ -13,7 +13,6 @@ $ npm start
 
 ## EndPointler  
 
-
 JSON Formatinda veriyi almak icin,
 
 ```
@@ -24,4 +23,19 @@ Web Formatinda veriyi almak icin,
 
 ```
 http://IP:PORT/get/web?urunID=119234
+```
+
+# Dockerize 
+
+`.env.example` dosyasi icerisindeki configleri duzenledikten sonra,
+
+```
+docker build -t qrglass .
+docker run -it -p 80:80 --name web qrglass
+```
+
+* `docker-compose` yuklu ise,
+
+```
+docker-compose up
 ```
