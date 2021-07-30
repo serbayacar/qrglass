@@ -11,7 +11,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 //Routing
-require('./application/routers/routerManager')(app);
+require('./src/application/routers/routerManager')(app);
 
 
 //Serve Node App to IP:PORT
