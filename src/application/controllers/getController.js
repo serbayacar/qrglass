@@ -27,29 +27,27 @@ module.exports.getAsJson =  function(req, res) {
 
 module.exports.getFromMSSQL =  function(req, res) {  
     // This endpoint serves data as JSON
-    // var dbConfig = {
-    //     server: "10.20.1.11",
-    //     database:"MES_P20Y06",
-    //     user:"sa",
-    //     password:"1"
-    // };
 
     var Connection = require('tedious').Connection;  
     var config = {  
-        server: '10.20.1.11',  //update me
+        server: process.env.DB_SERVER, //'10.20.1.11',  //update me
         authentication: {
             type: 'default',
             options: {
-                userName: 'sa', //update me
-                password: '1'  //update me
+                userName:  process.env.DB_USER, //'sa', //update me
+                password: process.env.DB_PASS  //update me
             }
         },
         options: {
             // If you are on Microsoft Azure, you need encryption:
             encrypt: true,
-            database: 'MES_P20Y06'  //update me
+            database: process.env.DB_NAME //'MES_P20Y06'  //update me
         }
-    };  
+    };
+
+    //Consoling dbconfig
+    console.log(config);
+
     var connection = new Connection(config);  
     connection.on('connect', function(err) {  
         // If no error, then good to proceed.
@@ -67,8 +65,7 @@ module.exports.getFromMSSQL =  function(req, res) {
         request = new Request("SELECT TOP 1 [prdID],[uid],[dsl_pid],[daily_prd],[faulty_prd],[total_prd],[op_tim] FROM [MES_P20Y06].[dbo].[Production.Product];", function(err) {
         if (err) {  
             console.log(err);}  
-        });  
-
+        });
 
         request.on('row', function(columns) {  
             columns.forEach(function(column) {  
