@@ -26,6 +26,7 @@ module.exports.getAsJson =  function(req, res) {
 }
 
 module.exports.getFromMSSQL =  function(req, res) {  
+    var lines = [];
     // This endpoint serves data as JSON
 
     var Connection = require('tedious').Connection;  
@@ -52,7 +53,8 @@ module.exports.getFromMSSQL =  function(req, res) {
     connection.on('connect', function(err) {  
         // If no error, then good to proceed.
         console.log("Connected");
-        executeStatement();
+        cevap = executeStatement();
+        console.log('cevap :: ', cevap);
     });
     
     connection.connect();
@@ -60,7 +62,7 @@ module.exports.getFromMSSQL =  function(req, res) {
     var Request = require('tedious').Request  
     var TYPES = require('tedious').TYPES;  
   
-    let lines = [];
+    var lines = [];
     function executeStatement() {  
         request = new Request("SELECT TOP 1 [wor_nam],[wor_qty],[qty_oky],[qty_wst] FROM [MES_P20Y06].[dbo].[WorkOrder];", function(err) {
         if (err) {  
@@ -68,17 +70,22 @@ module.exports.getFromMSSQL =  function(req, res) {
         });
 
         request.on('row', function(columns) {  
+            var obj = {}
             columns.forEach(function(column) {  
               if (column.value !== null) {  
-                lines.push(column.value);  
+                var key = column.metadata.colName;
+                var val = column.value;
+                obj[key] = val;
               }  
             });  
-            console.log(lines);
+            console.log(obj);
+            lines.push(obj)
         });  
   
   
         request.on('done', function(rowCount, more) {  
-        console.log(rowCount + ' rows returned');  
+            console.log(rowCount + ' rows returned');
+            console.log('Done lines :: ', lines);
         });  
         
         // Close the connection after the final event emitted by the request, after the callback passes
@@ -90,6 +97,8 @@ module.exports.getFromMSSQL =  function(req, res) {
     }  
 
     // Generating JSON Data
-    const data = "{ name : 'product-1', production-date : '2021-07-13', exprire-date : '2022-01-01' }"
-    res.json(data);
+    console.log('Serbay Son');
+    res.json(lines);
+    // const data = "{ name : 'product-1', production-date : '2021-07-13', exprire-date : '2022-01-01' }"
+    // res.json(data);
 }
