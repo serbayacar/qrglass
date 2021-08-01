@@ -62,7 +62,7 @@ module.exports.getFromMSSQL =  function(req, res) {
   
     let lines = [];
     function executeStatement() {  
-        request = new Request("SELECT TOP 1 [prdID],[uid],[dsl_pid],[daily_prd],[faulty_prd],[total_prd],[op_tim] FROM [MES_P20Y06].[dbo].[Production.Product];", function(err) {
+        request = new Request("SELECT TOP 1 [wor_nam],[wor_qty],[qty_oky],[qty_wst] FROM [MES_P20Y06].[dbo].[WorkOrder];", function(err) {
         if (err) {  
             console.log(err);}  
         });
