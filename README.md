@@ -3,6 +3,23 @@ NodeJS + MSSQL CRUD Project
 
 ## Kurulum
 
+### Node kurulumu
+
+Centos Icin ,
+
+* https://prototurk.com/makaleler/centos-node-js-kurulumu
+
+Ubuntu Icin,
+
+* https://blog.veriloji.com/ubuntu-uzerine-nodejs-kurulumu/
+
+Windows Icin,
+
+* https://www.yusufsezer.com.tr/node-js-kurulumu/
+
+
+### Projenin sunucuya kurulmasi
+
 ```
 $ git clone https://github.com/serbayacar/qrglass
 $ npm install
@@ -38,6 +55,18 @@ docker run -it -p 3001:80 --name web qrglass
 
 ```
 docker-compose up
+```
+
+# QR Code Olusturma
+
+Text formatinda icerisinde sadece veri tabanindaki id bilgisini qrcode olarak olusturuyoruz.
+
+* https://www.qr-code-generator.com/
+
+Ornek veri,
+
+```
+16909617
 ```
 
 
