@@ -19,10 +19,10 @@ JSON Formatinda veriyi almak icin,
 http://IP:PORT/get/json?urunID=119234
 ```
 
-Web Formatinda veriyi almak icin,
+MSSQL veritabanindan   veriyi almak icin,
 
 ```
-http://IP:PORT/get/web?urunID=119234
+http://IP:PORT/get/mssql?urunID=119234
 ```
 
 # Dockerize 
@@ -31,7 +31,7 @@ http://IP:PORT/get/web?urunID=119234
 
 ```
 docker build -t qrglass .
-docker run -it -p 80:80 --name web qrglass
+docker run -it -p 3001:80 --name web qrglass
 ```
 
 * `docker-compose` yuklu ise,
