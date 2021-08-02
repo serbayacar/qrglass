@@ -2,18 +2,6 @@ const url = require('url');
 const path = require('path');
 const sql = require('mssql')
 
-module.exports.getAsWeb =  function(req, res) {  
-    // This endpoint serves data as Web Page
-
-    // Parsing URL variables
-    const url_parts = url.parse(req.url, true);
-    const variables = url_parts.query;
-  
-    //Generate Web Page for UrunID
-    const webpage = path.join(__dirname, '../../webcontents/productDetail.html');
-    res.render(webpage, {urunID:variables.urunID,urunProductDate:'2021-07-13',urunExpireDate:'2022-01-18'});
-}
-
 module.exports.getAsJson =  function(req, res) {  
     // This endpoint serves data as JSON
 
@@ -58,14 +46,15 @@ module.exports.getFromMSSQL =  function(req, res) {
         var request = new sql.Request();
            
         // query to the database and get the records
-        variables.urunID
         const sqlQuery= `SELECT TOP 1 [dsl_pid],[wor_nam],[wor_qty],[qty_oky],[qty_wst] FROM [MES_P20Y06].[dbo].[WorkOrder] WHERE [dsl_pid]=${variables.urunID}`
         request.query(sqlQuery, function (err, recordset) {
             
             if (err) console.log(err)
 
-            // send records as a response
+            // debug recordset
             console.log(recordset);
+
+
             // send records as a response
             res.json(recordset.recordset[0]);
         });
